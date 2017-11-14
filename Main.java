@@ -16,7 +16,7 @@ public class Main {
 		final long duration = System.nanoTime() - startTime;
 		final double duration_s = duration/Math.pow(10,  9);
 		System.out.println("\n\n");
-		System.out.println("-------------COMPLETED IN " + duration_s + "s---------------");
+		System.out.println("-------------COMPLETED INADFASFASDFASDFASDF " + duration_s + "s---------------");
 	}
 
 }
