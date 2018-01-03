@@ -1,3 +1,4 @@
+package word_search;
 import java.util.*;
 
 public class WordSearch {
@@ -323,5 +324,12 @@ public class WordSearch {
 	public void setWordBank(String[] wordBank) {
 		this.wordBank = wordBank;
 	} 
-
+	
+	public char[][] getGrid(){
+		return grid;
+	}
+	
+	public void setGrid(char[][] grid) {
+		this.grid = grid;
+	}
 }
