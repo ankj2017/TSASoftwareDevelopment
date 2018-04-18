@@ -1,0 +1,10 @@
+Need:
+- individual packages for each puzzle, each with a GUI class to load a Java FX stage
+- simple main menu class
+- FXCSS styling for GUI
+- New puzzles:
+  - Anagrams
+  - KenKen?
+  - TBD
+- Package code in .exe?
+- Who will present?
