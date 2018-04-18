@@ -1,52 +1,44 @@
 package puzzles.wordsearch;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.application.*;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-//import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.*;
+public class WordSearchGUI {
 
-public class Main extends Application {
+    private static  int numWords = 20;
+    private static int size = 16;
 
-    private int numWords = 20;
-    private int size = 16;
+    private static WordPane[][] wordPanes = new WordPane[size][size];
 
-    private WordPane[][] wordPanes = new WordPane[size][size];
+    private static int currentX = 0;
+    private static int currentY = 0;
 
-    private int currentX = 0;
-    private int currentY = 0;
+    private static boolean clicked = false;
+    private static WordPane clickedPane;
 
-    private boolean clicked = false;
-    private WordPane clickedPane;
+    private static String theme = Words.colors.getTheme();
+    private static String[] wordBank = Words.colors.getWordBank();
 
-    private String theme = Words.colors.getTheme();
-    private String[] wordBank = Words.colors.getWordBank();
+    private static List<String> foundWords = new ArrayList<>();
 
-    private List<String> foundWords = new ArrayList<>();
+    private static BackgroundFill redFill = new BackgroundFill(Paint.valueOf("#FF2222"), CornerRadii.EMPTY, Insets.EMPTY);
+    private static BackgroundFill greenFill = new BackgroundFill(Paint.valueOf("#22FF22"), CornerRadii.EMPTY, Insets.EMPTY);
+    private static BackgroundFill blueFill = new BackgroundFill(Paint.valueOf("#3344FF"), CornerRadii.EMPTY, Insets.EMPTY);
+    private static BackgroundFill whiteFill = new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY);
 
-    private BackgroundFill redFill = new BackgroundFill(Paint.valueOf("#FF2222"), CornerRadii.EMPTY, Insets.EMPTY);
-    private BackgroundFill greenFill = new BackgroundFill(Paint.valueOf("#22FF22"), CornerRadii.EMPTY, Insets.EMPTY);
-    private BackgroundFill blueFill = new BackgroundFill(Paint.valueOf("#3344FF"), CornerRadii.EMPTY, Insets.EMPTY);
-    private BackgroundFill whiteFill = new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY);
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public static Stage load(){
         VBox root = new VBox(40);
         root.setAlignment(Pos.CENTER);
         TilePane tilePane = new TilePane(Orientation.VERTICAL);
@@ -55,6 +47,8 @@ public class Main extends Application {
 //		tilePane.setHgap(5);
 //		tilePane.setVgap(5);
         tilePane.setAlignment(Pos.CENTER);
+
+        Stage primaryStage = new Stage();
 
         Text title = new Text("Word Search");
         title.setFont(Font.font("Verdana", 48));
@@ -172,12 +166,11 @@ public class Main extends Application {
         Scene scene = new Scene(root, 600, 600);
         primaryStage.setTitle("Word Search");
         primaryStage.setScene(scene);
-        primaryStage.show();
+
+        return primaryStage;
     }
 
-    public static void main(String[] args) {launch(args);}
-
-    public void restart(Stage primaryStage) {
+    private static void restart(Stage primaryStage) {
         VBox root = new VBox(40);
         root.setAlignment(Pos.CENTER);
         TilePane tilePane = new TilePane(Orientation.VERTICAL);
@@ -297,8 +290,3 @@ public class Main extends Application {
         primaryStage.show();
     }
 }
-
-//ISSUES:
-//	1. Panes offset one row
-//	2. Incorrect attempts not highlighting red
-//	3. Puzzle not changing after fully solved
